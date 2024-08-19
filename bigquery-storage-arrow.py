@@ -36,8 +36,10 @@ read_session.data_format = types.DataFormat.ARROW
 # Specify the columns you want to select
 # Reducing column list speeds things up significantly with wide tables
 read_session.read_options = types.ReadSession.TableReadOptions(
-    selected_fields=["col1", "col2", "col3"]  # Replace with your desired column names
+    selected_fields=["col1", "col2", "col3"],  # Replace with your desired column names
+    row_restriction="column_name > 100" # Replace with row filter condition
 )
+requested_session.read_options.row_restriction = 'state = "WA"'
 
 # Big query storage api wants project to be like this
 parent = f"projects/{project_id}"
